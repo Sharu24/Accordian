@@ -78,11 +78,14 @@
       if (evt.target.getAttribute("class") === "title") {
         let content = evt.target;
         let child = content.nextElementSibling;
+        titleList.forEach(title => {
+          title.nextElementSibling.classList.remove("active");
+        });
         if (evt.type === "mouseenter") {
           //   console.log("with mouse");
           child.classList.add("active");
         } else {
-          //   console.log("In Toggle" + ++i);
+          console.log("In Toggle" + ++i);
           child.classList.toggle("active");
         }
       } else {
