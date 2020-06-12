@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <style>
+    .container {
+      width: 200px;
+      padding: 0.4rem;
+    }
+    .title {
+      background-color: #222831;
+      color: #eeeeee;
+      font-size: 1.6rem;
+      margin: 0.2rem;
+      padding: 0.15rem 0.75rem;
+      border-radius: 0.2rem;
+      letter-spacing: 0.1rem;
+      padding: 0.15rem auto;
+      transition: all 0.2s linear;
+    }
+    .title:hover {
+      background: #32e0c4;
+      color: #222831;
+      transform: translateX(2%);
+      text-align: center;
+    }
+    .content {
+      margin: 0.2rem 0 0.2rem 1rem;
+      padding: 0.15rem 0.95rem;
+      border: 1px solid grey;
+      border-radius: 0.2rem;
+      display: none;
+    }
+
+    .active {
+      display: block;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="title">Panel 1</div>
+        <div class="content hide">Panel 1 body content</div>
+      </div>
+      <div class="header">
+        <div class="title">Panel 2</div>
+        <div class="content hide">Panel 2 body content</div>
+      </div>
+      <div class="header">
+        <div class="title">Panel 3</div>
+        <div class="content hide">Panel 3 body content</div>
+      </div>
+    </div>
+  </body>
+  <script>
+    let titleList = document.querySelectorAll(".title");
+    let headerList = document.querySelectorAll(".header");
+    let i = 0;
+    window.addEventListener("click", hideUnhide);
+
+    titleList.forEach(title => {
+      title.addEventListener("mouseenter", hideUnhide);
+    });
+
+    function hideUnhide(evt) {
+      //   console.log(evt);
+      if (evt.target.getAttribute("class") === "title") {
+        let content = evt.target;
+        let child = content.nextElementSibling;
+        if (evt.type === "mouseenter") {
+          //   console.log("with mouse");
+          child.classList.add("active");
+        } else {
+          //   console.log("In Toggle" + ++i);
+          child.classList.toggle("active");
+        }
+      } else {
+        // console.log("Aliens Click");
+        titleList.forEach(title => {
+          title.nextElementSibling.classList.remove("active");
+        });
+      }
+    }
+  </script>
+</html>
